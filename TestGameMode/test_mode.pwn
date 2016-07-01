@@ -97,4 +97,15 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 public OnPlayerRequestSpawn(playerid)
 	return (GetPVarInt(playerid, "logged")) ? (1) : (0);
 
+CMD:weapon(playerid, params[])
+{
+	extract params -> new weaponid, ammo; else
+	    return SendClientMessage(playerid, -1,
+			"{"#COLOR_ERROR"}Îøèáêà: èñïîëüçóéòå /wepon [id] [ïàòðîíû]");
+	GivePlayerWeapon(playerid, weaponid, ammo);
+	SendClientMessagef(playerid, -1, "Âû ïîëó÷èëè ðóæèå %d c %d ïàòðîíàìè",
+		weaponid, ammo);
+	return 1;
+}
+
 main(){}
