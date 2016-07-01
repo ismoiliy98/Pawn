@@ -23,7 +23,7 @@ enum dialog_ids
 
 public OnGameModeInit()
 {
-    	SetGameModeText("Test Mode");
+    SetGameModeText("Test Mode");
 	AddPlayerClass(0, 1958.378, 1343.157, 15.374, 269.142, 0, 0, 0, 0, 0, 0);
 	SendRconCommand("hostname Server for testing");
 	SendRconCommand("language Russian");
