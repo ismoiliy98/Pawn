@@ -15,7 +15,7 @@
 #define COLOR_WARNING f1c40f
 #define COLOR_NOTE f39c12
 
-enum e_DIALOG_ID
+enum dialog_ids
 {
 	DIALOG_ID_NONE,
 	DIALOG_ID_SKIN
