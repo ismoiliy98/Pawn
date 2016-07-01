@@ -103,7 +103,7 @@ CMD:weapon(playerid, params[])
 	    return SendClientMessage(playerid, -1,
 			"{"#COLOR_ERROR"}Ошибка: используйте /wepon [id] [патроны]");
 	GivePlayerWeapon(playerid, weaponid, ammo);
-	SendClientMessagef(playerid, -1, "Вы получили ружие %d c %d патронами",
+	SendClientMessagef(playerid, -1, "Вы получили оружие %d c %d патронами",
 		weaponid, ammo);
 	return 1;
 }
