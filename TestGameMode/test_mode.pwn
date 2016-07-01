@@ -1,5 +1,5 @@
 //Game Mode for Test!!
-//Git
+
 #include <a_samp>
 #include <crashdetect>
 #include <fixes>
