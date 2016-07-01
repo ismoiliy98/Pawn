@@ -15,8 +15,11 @@
 #define COLOR_WARNING f1c40f
 #define COLOR_NOTE f39c12
 
-const DIALOG_ID_NONE = 0;
-const DIALOG_ID_SKIN = 1;
+enum e_DIALOG_ID
+{
+	DIALOG_ID_NONE,
+	DIALOG_ID_SKIN
+}
 
 public OnGameModeInit()
 {
