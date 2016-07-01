@@ -23,7 +23,7 @@ enum dialog_ids
 
 public OnGameModeInit()
 {
-    SetGameModeText("Test Mode");
+    	SetGameModeText("Test Mode");
 	AddPlayerClass(0, 1958.378, 1343.157, 15.374, 269.142, 0, 0, 0, 0, 0, 0);
 	SendRconCommand("hostname Server for testing");
 	SendRconCommand("language Russian");
@@ -46,10 +46,9 @@ public OnPlayerRequestClass(playerid, classid)
 	SetPlayerCameraPos(playerid, 1958.3783, 1343.1572, 15.3746);
 	SetPlayerCameraLookAt(playerid, 1958.3783, 1343.1572, 15.3746);
 	ShowPlayerDialog(playerid, DIALOG_ID_SKIN, DIALOG_STYLE_INPUT,
- 		"{"#COLOR_DIALOG_CAPTION"}Выбор модели",
- 		"{"#COLOR_DIALOG_TEXT"}Введите ID модели с которым хотите начать \
-		 тест (1-299):",
-	    "Выбрать", "");
+	"{"#COLOR_DIALOG_CAPTION"}Выбор модели",
+	"{"#COLOR_DIALOG_TEXT"}Введите ID модели с которым хотите начать \
+	тест (1-299):", "Выбрать", "");
 	return 1;
 }
 
@@ -68,29 +67,23 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 		{
 		    if(!response)
 		        return ShowPlayerDialog(playerid, DIALOG_ID_SKIN,
-							DIALOG_STYLE_INPUT,
-					 		!"{"#COLOR_DIALOG_CAPTION"}Выбор модели",
-					 		!"{"#COLOR_DIALOG_TEXT"}Введите ID модели с которым \
-							 хотите начать тест (1-299):",
-						    	!"Выбрать", !"");
+				DIALOG_STYLE_INPUT, !"{"#COLOR_DIALOG_CAPTION"}Выбор модели",
+	 			!"{"#COLOR_DIALOG_TEXT"}Введите ID модели с которым \
+				 хотите начать тест (1-299):", !"Выбрать", !"");
 			new model_id;
 			if(!(model_id = strval(inputtext)))
             	return ShowPlayerDialog(playerid, DIALOG_ID_SKIN,
-							DIALOG_STYLE_INPUT,
-					 		!"{"#COLOR_DIALOG_CAPTION"}Выбор модели",
-					 		!"{"#COLOR_DIALOG_TEXT"}Введите ID модели с которым \
-							 хотите начать тест (1-299):",
-						    	!"Выбрать", !"");
+				DIALOG_STYLE_INPUT, !"{"#COLOR_DIALOG_CAPTION"}Выбор модели",
+	 			!"{"#COLOR_DIALOG_TEXT"}Введите ID модели с которым \
+				 хотите начать тест (1-299):", !"Выбрать", !"");
 			if(1 > model_id > 299)
 			    return ShowPlayerDialog(playerid, DIALOG_ID_SKIN,
-				DIALOG_STYLE_INPUT,
-		 		!"{"#COLOR_DIALOG_CAPTION"}Выбор модели",
-		 		!"{"#COLOR_DIALOG_TEXT"}Введите ID модели с которым \
-				 хотите начать тест (1-299):",
-			    !"Выбрать", !"");
+				DIALOG_STYLE_INPUT, !"{"#COLOR_DIALOG_CAPTION"}Выбор модели",
+	 			!"{"#COLOR_DIALOG_TEXT"}Введите ID модели с которым \
+				 хотите начать тест (1-299):", !"Выбрать", !"");
 			SetPVarInt(playerid, "logged", model_id);
 			SetSpawnInfo(playerid, 0, model_id, 0.0, 0.0, 3.2, 0.0,
-				0, 0, 0, 0, 0, 0);
+			0, 0, 0, 0, 0, 0);
 			SpawnPlayer(playerid);
 		}
 	}
@@ -104,10 +97,10 @@ CMD:weapon(playerid, params[])
 {
 	extract params -> new weaponid, ammo; else
 	    return SendClientMessage(playerid, -1,
-			"{"#COLOR_ERROR"}Ошибка: используйте /wepon [id] [патроны]");
+		"{"#COLOR_ERROR"}Ошибка: используйте /wepon [id] [патроны]");
 	GivePlayerWeapon(playerid, weaponid, ammo);
 	SendClientMessagef(playerid, -1, "Вы получили оружие %d c %d патронами",
-		weaponid, ammo);
+	weaponid, ammo);
 	return 1;
 }
 
