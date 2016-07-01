@@ -101,9 +101,9 @@ CMD:weapon(playerid, params[])
 {
 	extract params -> new weaponid, ammo; else
 	    return SendClientMessage(playerid, -1,
-			"{"#COLOR_ERROR"}Îøèáêà: èñïîëüçóéòå /wepon [id] [ïàòðîíû]");
+			"{"#COLOR_ERROR"}Ошибка: используйте /wepon [id] [патроны]");
 	GivePlayerWeapon(playerid, weaponid, ammo);
-	SendClientMessagef(playerid, -1, "Âû ïîëó÷èëè ðóæèå %d c %d ïàòðîíàìè",
+	SendClientMessagef(playerid, -1, "Вы получили ружие %d c %d патронами",
 		weaponid, ammo);
 	return 1;
 }
