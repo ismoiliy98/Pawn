@@ -1,4 +1,4 @@
-//Game Mode for Test!
+//Game Mode for Tests!!
 
 #include <a_samp>
 #include <crashdetect>
