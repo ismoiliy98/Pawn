@@ -7,6 +7,7 @@
 #include <sscanf2>
 #include <dc_cmd>
 #include <streamer>
+#include <g_hp>
 
 #define COLOR_DIALOG_CAPTION 3498db
 #define COLOR_DIALOG_TEXT ffffff
@@ -93,6 +94,20 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 public OnPlayerRequestSpawn(playerid)
 	return (GetPVarInt(playerid, "logged")) ? (1) : (0);
 
+public OnPlayerUpdate(playerid)
+{
+	if(gettime() > GetPVarInt(playerid, "g_hp_log"))
+	{
+		new Float:health;
+		GetPlayerHealth(playerid, health);
+		SendClientMessagef(playerid, -1, "HP:%f - Must be:%f",
+		player_health[playerid], health);
+		CheckPlayerHealth(playerid);
+		SetPVarInt(playerid, "g_hp_log", gettime()+1);
+	}
+	return 1;
+}
+
 CMD:weapon(playerid, params[])
 {
 	extract params -> new weaponid, ammo; else
@@ -101,6 +116,14 @@ CMD:weapon(playerid, params[])
 	GivePlayerWeapon(playerid, weaponid, ammo);
 	SendClientMessagef(playerid, -1, !"Вы получили оружие %d c %d патронами",
 	weaponid, ammo);
+	return 1;
+}
+
+CMD:health(playerid, params[])
+{
+	extract params -> new Float:health; else
+	    return SendClientMessage(playerid, -1, "Use: /health [amount]");
+	SetPlayerHealth(playerid, health);
 	return 1;
 }
 
