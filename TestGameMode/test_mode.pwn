@@ -106,11 +106,11 @@ public OnPlayerUpdateStatus(playerid)
 	SendClientMessagef(playerid, -1, "Log №1: health:%0.1f - mustbe:%0.1f",
 	player_health[playerid], health);
 	if(_:health > _:player_health[playerid])
-	    ShowPlayerDialog(playerid, DIALOG_ID_NONE, DIALOG_STYLE_MSGBOX,
-	    " ", "{"#COLOR_ERROR"}Вы подозреваетесь в читерстве!", "Закрыть", "");
+		ShowPlayerDialog(playerid, DIALOG_ID_NONE, DIALOG_STYLE_MSGBOX,
+		" ", "{"#COLOR_ERROR"}Вы подозреваетесь в читерстве!", "Закрыть", "");
 	else if(_:health < _:player_health[playerid])
-	    player_health[playerid] = health;
-    SendClientMessagef(playerid, -1, "Log №2: health:%0.1f - mustbe:%0.1f",
+		player_health[playerid] = health;
+	SendClientMessagef(playerid, -1, "Log №2: health:%0.1f - mustbe:%0.1f",
 	player_health[playerid], health);
 	SetPVarInt(playerid, "second_timer",
 	SetTimerEx("OnPlayerUpdateStatus", 1000, 0, "d", playerid));
@@ -134,7 +134,7 @@ CMD:weapon(playerid, params[])
 CMD:health(playerid, params[])
 {
 	extract params -> new Float:health; else
-	    return SendClientMessage(playerid, -1, "Use: /health [amount]");
+		return SendClientMessage(playerid, -1, "Use: /health [amount]");
 	if(0 > health > 25000)
 		return SendClientMessage(playerid, -1, "Use amount between 0 and 25000");
 	SetPlayerHealth(playerid, health);
