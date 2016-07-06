@@ -9,7 +9,7 @@ const G_GEO_MAX_IP_LENGTH = 16;
 
 forward g_geo_OnPlayerCountryDetected(playerid, response_code, data[]);
 
-static g_geo_g_geo_player_ip[MAX_PLAYERS][G_GEO_MAX_IP_LENGTH];
+static g_geo_player_ip[MAX_PLAYERS][G_GEO_MAX_IP_LENGTH];
 new player_country[MAX_PLAYERS][G_GEO_COUNTRY_LENGTH];
 
 public OnPlayerConnect(playerid)
