@@ -38,6 +38,8 @@ public OnPlayerConnect(playerid)
 
 public OnPlayerDisconnect(playerid, reason)
 {
+	if(GetPVarInt(playerid, "second_timer"))
+		KillTimer(GetPVarInt(playerid, "second_timer"));
 	return 1;
 }
 
@@ -57,6 +59,10 @@ public OnPlayerSpawn(playerid)
 {
 	SetPlayerPos(playerid, 0.0, 0.0, 3.2);
 	SetPlayerSkin(playerid, GetPVarInt(playerid, "logged"));
+	SetPlayerHealth(playerid, 100);
+	if(!GetPVarInt(playerid, "second_timer"))
+		SetPVarInt(playerid, "second_timer",
+		SetTimerEx("OnPlayerUpdateStatus", 1000, 0, "d", playerid));	
 	return 1;
 }
 
@@ -88,6 +94,23 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 			SpawnPlayer(playerid);
 		}
 	}
+	return 1;
+}
+
+public OnPlayerUpdateStatus(playerid)
+{
+	new Float:health;
+	GetPlayerHealth(playerid, health);
+	SendClientMessagef(playerid, -1, "Log №1: health:%0.1f - mustbe:%0.1f",
+	player_health[playerid], health);
+	if(_:health > _:player_health[playerid])
+	    Kick(playerid, "Подозрение в читерсте");
+	else if(_:health < _:player_health[playerid])
+	    player_health[playerid] = health;
+    SendClientMessagef(playerid, -1, "Log №2: health:%0.1f - mustbe:%0.1f",
+	player_health[playerid], health);
+	SetPVarInt(playerid, "second_timer",
+	SetTimerEx("OnPlayerUpdateStatus", 1000, 0, "d", playerid));
 	return 1;
 }
 
@@ -123,6 +146,8 @@ CMD:health(playerid, params[])
 {
 	extract params -> new Float:health; else
 	    return SendClientMessage(playerid, -1, "Use: /health [amount]");
+	if(0 > health > 25000)
+		return SendClientMessage(playerid, -1, "Use amount between 0 and 25000);
 	SetPlayerHealth(playerid, health);
 	return 1;
 }
