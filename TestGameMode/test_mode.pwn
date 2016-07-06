@@ -141,4 +141,14 @@ CMD:health(playerid, params[])
 	return 1;
 }
 
+CMD:armour(playerid, params[])
+{
+	extract params -> new Float:armour; else
+		return SendClientMessage(playerid, -1, "Use: /armour [amount]");
+	if(0 > armour > 25000)
+		return SendClientMessage(playerid, -1, "Use amount between 0 and 25000");
+	SetPlayerArmour(playerid, armour);
+	return 1;
+}
+
 main(){}
