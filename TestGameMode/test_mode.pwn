@@ -64,7 +64,7 @@ public OnPlayerSpawn(playerid)
 	SetPlayerHealth(playerid, 100);
 	if(!GetPVarInt(playerid, "second_timer"))
 		SetPVarInt(playerid, "second_timer",
-	SetTimerEx("OnPlayerUpdateStatus", 1000, 0, "d", playerid));
+		SetTimerEx("OnPlayerUpdateStatus", 1000, 0, "d", playerid));
 	return 1;
 }
 
