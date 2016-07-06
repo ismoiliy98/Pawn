@@ -101,17 +101,30 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 
 public OnPlayerUpdateStatus(playerid)
 {
-	new Float:health;
+	new 
+		Float:health,
+		Float:armour;
 	GetPlayerHealth(playerid, health);
+	GetPlayerArmour(playerid, armour);
 	SendClientMessagef(playerid, -1, "Log №1: health:%0.1f - mustbe:%0.1f",
 	player_health[playerid], health);
+	SendClientMessagef(playerid, -1, "Log №1: armour:%0.1f - mustbe:%0.1f",
+	player_armour[playerid], armour);
 	if(_:health > _:player_health[playerid])
 		ShowPlayerDialog(playerid, DIALOG_ID_NONE, DIALOG_STYLE_MSGBOX,
 		" ", "{"#COLOR_ERROR"}Вы подозреваетесь в читерстве!", "Закрыть", "");
 	else if(_:health < _:player_health[playerid])
 		player_health[playerid] = health;
+		
+	if(_:armour > _:player_armour[playerid])
+		ShowPlayerDialog(playerid, DIALOG_ID_NONE, DIALOG_STYLE_MSGBOX,
+		" ", "{"#COLOR_ERROR"}Вы подозреваетесь в читерстве!", "Закрыть", "");
+	else if(_:armour < _:player_armour[playerid])
+		player_armour[playerid] = armour;
 	SendClientMessagef(playerid, -1, "Log №2: health:%0.1f - mustbe:%0.1f",
 	player_health[playerid], health);
+	SendClientMessagef(playerid, -1, "Log №2: armour:%0.1f - mustbe:%0.1f",
+	player_armour[playerid], armour);
 	SetPVarInt(playerid, "second_timer",
 	SetTimerEx("OnPlayerUpdateStatus", 1000, 0, "d", playerid));
 	return 1;
