@@ -16,6 +16,8 @@
 #define COLOR_WARNING f1c40f
 #define COLOR_NOTE f39c12
 
+forward OnPlayerUpdateStatus(playerid);
+
 enum dialog_ids
 {
 	DIALOG_ID_NONE,
@@ -62,7 +64,7 @@ public OnPlayerSpawn(playerid)
 	SetPlayerHealth(playerid, 100);
 	if(!GetPVarInt(playerid, "second_timer"))
 		SetPVarInt(playerid, "second_timer",
-		SetTimerEx("OnPlayerUpdateStatus", 1000, 0, "d", playerid));	
+		SetTimerEx("OnPlayerUpdateStatus", 1000, 0, "d", playerid));
 	return 1;
 }
 
@@ -104,7 +106,8 @@ public OnPlayerUpdateStatus(playerid)
 	SendClientMessagef(playerid, -1, "Log №1: health:%0.1f - mustbe:%0.1f",
 	player_health[playerid], health);
 	if(_:health > _:player_health[playerid])
-	    Kick(playerid, "Подозрение в читерсте");
+	    ShowPlayerDialog(playerid, DIALOG_ID_NONE, DIALOG_STYLE_MSGBOX,
+	    " ", "{"#COLOR_ERROR"}Вы подозреваетесь в читерстве!", "Закрыть", "");
 	else if(_:health < _:player_health[playerid])
 	    player_health[playerid] = health;
     SendClientMessagef(playerid, -1, "Log №2: health:%0.1f - mustbe:%0.1f",
@@ -117,27 +120,13 @@ public OnPlayerUpdateStatus(playerid)
 public OnPlayerRequestSpawn(playerid)
 	return (GetPVarInt(playerid, "logged")) ? (1) : (0);
 
-public OnPlayerUpdate(playerid)
-{
-	if(gettime() > GetPVarInt(playerid, "g_hp_log"))
-	{
-		new Float:health;
-		GetPlayerHealth(playerid, health);
-		SendClientMessagef(playerid, -1, "HP:%f - Must be:%f",
-		player_health[playerid], health);
-		CheckPlayerHealth(playerid);
-		SetPVarInt(playerid, "g_hp_log", gettime()+1);
-	}
-	return 1;
-}
-
 CMD:weapon(playerid, params[])
 {
 	extract params -> new weaponid, ammo; else
 		return SendClientMessage(playerid, -1,
 			!"{"#COLOR_ERROR"}Ошибка: используйте /wepon [id] [патроны]");
 	GivePlayerWeapon(playerid, weaponid, ammo);
-	SendClientMessagef(playerid, -1, !"Вы получили оружие %d c %d патронами",
+	SendClientMessagef(playerid, -1, "Вы получили оружие %d c %d патронами",
 	weaponid, ammo);
 	return 1;
 }
@@ -147,7 +136,7 @@ CMD:health(playerid, params[])
 	extract params -> new Float:health; else
 	    return SendClientMessage(playerid, -1, "Use: /health [amount]");
 	if(0 > health > 25000)
-		return SendClientMessage(playerid, -1, "Use amount between 0 and 25000);
+		return SendClientMessage(playerid, -1, "Use amount between 0 and 25000");
 	SetPlayerHealth(playerid, health);
 	return 1;
 }
