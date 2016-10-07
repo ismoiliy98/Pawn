@@ -1,3 +1,8 @@
+#if defined __g_veh_included
+#endinput
+#endif
+#define __g_veh_included
+
 const g_veh_MAX_VEHICLE_NAME = 18;
 
 static g_veh_color[MAX_VEHICLES][2];
