@@ -23,7 +23,7 @@
 	#tryinclude "../sscanf2"
 #endif
 #if !defined sscanf
-	#include <VLP/sscanf2>
+	#include <sscanf2>
 #endif
 
 
