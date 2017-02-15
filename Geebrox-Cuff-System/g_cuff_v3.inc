@@ -52,7 +52,7 @@
     #tryinclude "../Pawn.CMD.inc"
 #endif
 #if !defined CMD
-	#tryinclude <VLP/Pawn.CMD>
+	#tryinclude <Pawn.CMD>
 #endif
 #if !defined CMD
     #error This include requires DC_CMD/ZCMD/YCMD/Pawn.CMD to work.
