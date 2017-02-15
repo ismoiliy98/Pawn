@@ -218,7 +218,7 @@ stock gc_GetFreeSeat(vehicleid)
         tmp,
         seat;
 
-#if defined _foreach_included  
+#if defined foreach  
     foreach(Player, i)
 #else
     for(new i = 0; i < GetPlayerPoolSize(); i++)
