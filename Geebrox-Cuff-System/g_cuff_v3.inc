@@ -304,7 +304,7 @@ public gc_UpdateSuspect(suspectid)
 }
 
 
-CMD:cuff(playerid, params[])
+CMD:gcuff(playerid, params[])
 {
 	extract params -> new suspectid; else
 	    return SendClientMessage(playerid, -1,
@@ -343,7 +343,7 @@ CMD:cuff(playerid, params[])
 }
 
 
-CMD:uncuff(playerid, params[])
+CMD:guncuff(playerid, params[])
 {
 	extract params -> new suspectid; else
 	    return SendClientMessage(playerid, -1,
@@ -382,7 +382,7 @@ CMD:uncuff(playerid, params[])
 }
 
 
-CMD:followme(playerid, params[])
+CMD:gfollowme(playerid, params[])
 {
 	extract params -> new suspectid; else
 	    return SendClientMessage(playerid, -1,
@@ -415,7 +415,7 @@ CMD:followme(playerid, params[])
 }
 
 
-CMD:stayhere(playerid, params[])
+CMD:gstayhere(playerid, params[])
 {
 	extract params -> new suspectid; else
 	    return SendClientMessage(playerid, -1,
